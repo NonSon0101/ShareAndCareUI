@@ -3,22 +3,31 @@ import { TouchableOpacity, Image, Text, View, StyleSheet } from 'react-native';
 
 export default function CategoryItem({ onPress, children }) {
     return (
-        <TouchableOpacity onPress={onPress}>
-            <Text style={styles.unSelectedText}>{children}</Text>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
+            <Text style={styles.text}>{children}</Text>
         </TouchableOpacity>
+
     );
 };
 const styles = StyleSheet.create({
-    unSelectedText: {
-        fontWeight: 'bold',
+    container: {
         marginLeft: 10,
-        fontSize: 20,
-        color: 'gray'
+        flexDirection: 'row',
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 6,
+        paddingBottom: 6,
+        alignItems: 'center',
+        backgroundColor: '#38A59F',
+        justifyContent: 'center',
+        borderRadius: 20,
     },
-    SelectedText: {
+    text: {
+        marginVertical: 4,
         fontWeight: 'bold',
-        marginLeft: 10,
-        fontSize: 20,
-        borderBottomWidth: 4,
-    }
+        fontSize: 16, // For text-base equivalent
+        color: 'white',
+    },
+
+
 });

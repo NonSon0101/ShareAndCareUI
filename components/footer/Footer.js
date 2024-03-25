@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SafeAreaView, Text, StyleSheet, Pressable, View } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 import HomeIcon from "../icons/HomeIcon";
 import ProductIcon from "../icons/ProductIcon";
 import MapIcon from "../icons/MapIcon";
@@ -7,6 +8,7 @@ import MessageIcon from "../icons/MessageIcon";
 import AddIcon from "../icons/AddIcon";
 
 export default function Footer() {
+    const navigation = useNavigation();
     const [home, setHome] = useState(true);
     const [product, setProduct] = useState(false);
     const [map, setMap] = useState(false);
@@ -17,6 +19,7 @@ export default function Footer() {
         setProduct(false);
         setMap(false);
         setMessage(false);
+        navigation.navigate('Home');
     }
 
     function openProduct() {
@@ -24,6 +27,7 @@ export default function Footer() {
         setProduct(true);
         setMap(false);
         setMessage(false);
+        navigation.navigate('Product');
     }
 
     function openMap() {
@@ -31,6 +35,7 @@ export default function Footer() {
         setProduct(false);
         setMap(true);
         setMessage(false);
+        navigation.navigate('Map');
     }
 
     function openMessage() {
@@ -38,14 +43,15 @@ export default function Footer() {
         setProduct(false);
         setMap(false);
         setMessage(true);
+        navigation.navigate('Message');
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <Pressable style={styles.addBtn}>
                 <AddIcon />
             </Pressable>
-            <SafeAreaView style={styles.itemContainer}>
+            <View style={styles.itemContainer}>
                 <Pressable style={styles.item} onPress={openHome}>
                     <HomeIcon color={home ? '#38A59F' : '#858585'} />
                     <Text
@@ -97,15 +103,16 @@ export default function Footer() {
                         message
                     </Text>
                 </Pressable>
-            </SafeAreaView>
-        </SafeAreaView>
+            </View>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        width: "100%"
+        width: "100%",
+
     },
     itemContainer: {
         flex: 1,
@@ -117,6 +124,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         borderTopWidth: 0.1,
         elevation: 2,
+        backgroundColor: '#fff'
         // backgroundColor: "blue",
     },
 
@@ -143,7 +151,7 @@ const styles = StyleSheet.create({
         width: 59,
         backgroundColor: "#38A59F",
         borderRadius: 100,
-        marginBottom: -35,
+        marginBottom: -30,
         elevation: 5,
         zIndex: 9999,
     },

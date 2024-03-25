@@ -31,7 +31,6 @@ export const acquisitionStyles = StyleSheet.create({
 
 export const itemStyles = StyleSheet.create({
   view: {
-    position: 'relative',
     flex: 0,
     marginTop: 20,
     marginBottom: 75,
@@ -59,26 +58,7 @@ export const selectedCategoryStyles = StyleSheet.create({
   }
 });
 
-export const grayBackgroundStyles = StyleSheet.create({
-  button: {
-    marginLeft: 10,
-    flexDirection: 'row',
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingTop: 6,
-    paddingBottom: 6,
-    alignItems: 'center',
-    backgroundColor: '#A6A6A6',
-    justifyContent: 'center',
-    borderRadius: 20,
-  },
-  text: {
-    marginHorizontal: 4,
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: 'white',
-  },
-});
+
 
 export const blueBackgroundStyles = StyleSheet.create({
   button: {

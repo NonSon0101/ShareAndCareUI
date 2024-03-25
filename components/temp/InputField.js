@@ -6,7 +6,7 @@ export default function UsernameInput(props) {
     return (
         <View style={styles.container}>
             <Image style={styles.icon} source={props.source} />
-            <TextInput placeholder={props.placeHolder} secureTextEntry={props.isShowed} />
+            <TextInput placeholder={props.placeHolder} secureTextEntry={props.isShowed} onChangeText={props.onChange} />
         </View>
     );
 }

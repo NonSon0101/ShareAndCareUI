@@ -105,6 +105,7 @@ export default function Footer() {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
+        width: "100%"
     },
     itemContainer: {
         flex: 1,

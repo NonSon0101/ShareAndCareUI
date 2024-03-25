@@ -1,110 +1,80 @@
 import { StatusBar } from 'expo-status-bar';
 
-import axios from 'axios';
 import React, { useEffect, useState, useContext, } from 'react';
-import { Text, SafeAreaView, Image, ScrollView, Dimensions, FlatList, View } from 'react-native';
-// import { AuthContext } from '../store/auth-context';
-import * as styles from '../styles';
-import SearchPressable from '../components/HeaderButton/SearchButton';
-import NotificationPressable from '../components/HeaderButton/NotificationButton';
-import MorePressable from '../components/HeaderButton/MoreButton';
+import { Text, SafeAreaView, Image, ScrollView, FlatList, View, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
-import ShirtCategory from '../components/Categories/ShirtCategory';
-import TshirtCategory from '../components/Categories/TshirtCategory';
-import JacketCategory from '../components/Categories/JacketCategory';
-import BlouseCategory from '../components/Categories/BlouseCategory';
-import DressCategory from '../components/Categories/DressCategory';
-import ShortsCategory from '../components/Categories/ShortsCategory';
-import PantsCategory from '../components/Categories/PantsCategory';
-import SkirtCategory from '../components/Categories/SkirtCategory';
-import SweaterCategory from '../components/Categories/SweaterCategory';
-import JeansCategory from '../components/Categories/JeansCategory';
 
-import FilterAcquisition from '../components/Acquisition/FilterAcquisition';
-import DistanceAcquisition from '../components/Acquisition/DistanceAcquisition';
-import FreeAcquisition from '../components/Acquisition/FreeAcquisition';
-import BuyAcquisition from '../components/Acquisition/BuyAcquisition';
-import BorrowAcquisition from '../components/Acquisition/BorrowAcquisition';
-import RentAcquisition from '../components/Acquisition/RentAcquisition';
+import AcquisitionItem from '../components/AcquisitionItem/index.js';
+import CategoryItem from '../components/CategoryItem/index.js';
+import HeaderButton from '../components/HeaderButton/index.js';
 
 import Product from '../components/Item/Product.js';
 import Footer from '../components/footer/Footer.js';
 
-function HomeScreen() {
-  const [fetchedMessage, setFetchedMesssage] = useState('');
-
-  // const authCtx = useContext(AuthContext);
-  // const token = authCtx.token;
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       'https://react-native-course-3cceb-default-rtdb.firebaseio.com/message.json?auth=' +
-  //       token
-  //     )
-  //     .then((response) => {
-  //       setFetchedMesssage(response.data);
-  //     });
-  // }, [token]);
-
-  // Lấy kích thước màn hình
-  const screenWidth = Dimensions.get('window').width;
-  const screenHeight = Dimensions.get('window').height;
+export default function HomeScreen() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <SafeAreaView>
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={{ width: 248, height: 47, position: 'absolute', top: 50 }}
-        />
+      <SafeAreaView style={{ height: "25%" }}>
+        <SafeAreaView className="flex-row">
+          <Image
+            source={require('../assets/images/logo.png')}
+            style={{ width: 248, height: 47, position: 'absolute', top: 50 }}
+          />
 
-        <SearchPressable />
-        <NotificationPressable />
-        <MorePressable />
-      </SafeAreaView>
-      <SafeAreaView style={{ flex: 3 }}>
-        <SafeAreaView style={styles.categoriesStyles.view}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-            <ShirtCategory />
-            <TshirtCategory />
-            <JacketCategory />
-            <BlouseCategory />
-            <DressCategory />
-            <ShortsCategory />
-            <PantsCategory />
-            <SkirtCategory />
-            <SweaterCategory />
-            <JeansCategory />
-          </ScrollView>
-        </SafeAreaView>
+          <HeaderButton icon={<Feather name="search" size={24} color="black" />} />
+          <HeaderButton icon={<Ionicons name="notifications" size={24} color="black" />} />
+          <HeaderButton icon={<Ionicons name="reorder-three" size={24} color="black" />} />
 
-        <SafeAreaView style={styles.acquisitionStyles.view}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} >
-            <FilterAcquisition />
-            <DistanceAcquisition />
-            <FreeAcquisition />
-            <BuyAcquisition />
-            <BorrowAcquisition />
-            <RentAcquisition />
-          </ScrollView>
+        </SafeAreaView>
+        <SafeAreaView style={{}}>
+          <SafeAreaView style={{}}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+              <AcquisitionItem children="Shirt" />
+              <AcquisitionItem children="Tshirt" />
+              <AcquisitionItem children="Jacket" />
+              <AcquisitionItem children="Blouse" />
+              <AcquisitionItem children="Dress" />
+              <AcquisitionItem children="Shorts" />
+              <AcquisitionItem children="Pants" />
+              <AcquisitionItem children="Skirt" />
+              <AcquisitionItem children="Sweater" />
+              <AcquisitionItem children="Jeans" />
+
+            </ScrollView>
+          </SafeAreaView>
+
+          <SafeAreaView style={{}}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+              <CategoryItem children="Filter" />
+              <CategoryItem children="Distance" />
+              <CategoryItem children="Free" />
+              <CategoryItem children="Buy" />
+              <CategoryItem children="Borrow" />
+              <CategoryItem children="Rent" />
+            </ScrollView>
+          </SafeAreaView>
         </SafeAreaView>
       </SafeAreaView>
-      <ScrollView style={styles.itemStyles.view}>
+
+      <ScrollView style={{}}>
         <Product />
         <Product />
         <Product />
         <Product />
         <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+
       </ScrollView>
+
       <SafeAreaView style={{ position: 'absolute', bottom: -8 }}>
         <Footer />
       </SafeAreaView>
     </SafeAreaView >
   );
 }
-export default HomeScreen;
+
+const styles = StyleSheet.create({
+
+}); 

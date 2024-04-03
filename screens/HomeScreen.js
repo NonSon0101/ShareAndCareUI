@@ -22,7 +22,7 @@ import Footer from "../components/footer/Footer.js";
 
 export default function HomeScreen({ navigation }) {
   function openDrawerHandler() {
-    navigation.openDrawer('HomeMenu')
+    navigation.openDrawer()
   }
   return (
     <View style={{ flex: 1 }}>

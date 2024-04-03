@@ -1,10 +1,12 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 export default function SignUp() {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <Text>Don't have account?</Text>
-            <Pressable >
+            <Pressable onPress={() => navigation.navigate('CreateAccount')}>
                 <Text style={styles.text}>Sign up Now</Text>
             </Pressable>
         </View>

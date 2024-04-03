@@ -1,34 +1,40 @@
-import axios from 'axios';
-import { SafeAreaView, Text, StyleSheet, View, Image } from "react-native";
-import login from '../util/auth'
-import InputField from "../components/temp/InputField.js";
-import Option from "../components/temp/Option.js";
-import ButtonLogin from "../components/temp/Button1.js";
-import SignUp from "../components/temp/SignUp.js";
-import { useState } from "react";
+import axios from "axios";
+import React, { useState, useContext } from "react";
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Alert,
+} from "react-native";
+import { AuthContext } from "../store/auth-context.js";
+import { login } from "../util/login.js";
 
-export default function LoginScreen({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import AuthContent from "../components/Auth/AuthContent.js";
 
-  function setUserName(emailInput) {
-    setEmail(emailInput);
-    // console.log(email);
-  }
+export default function LoginScreen() {
+  const authCtx = useContext(AuthContext);
 
-  function setPass(passwordInput) {
-    setPassword(passwordInput);
-    // console.log(password);
-  }
-
-  async function loginHandler() {
+  const handleLogin = async ({ email, password }) => {
     try {
-      const { user, tokens } = login(email, password);
-      console.log(user)
+      const response = await login({ email, password });
+      // Handle successful login
+      authCtx.authenticate(
+        response.tokens.accessToken,
+        response.tokens.refreshToken,
+        response.user.usr_name,
+        response.user.usr_email
+      );
     } catch (error) {
-      console.log(error)
+      // Handle login error
+      console.error("Login error:", error.stack);
+      Alert.alert(
+        "Login Failed",
+        "Please check your credentials and try again."
+      );
     }
-  }
+  };
 
   return (
     <SafeAreaView>
@@ -36,29 +42,12 @@ export default function LoginScreen({ navigation }) {
         <View style={styles.header}>
           <Image source={require("../assets/images/logo copy.png")} />
         </View>
-        <View style={styles.signin_container}>
-          <Text style={styles.text}>Sign in to your account</Text>
-
-          <InputField
-            source={require("../assets/images/icons-user.png")}
-            placeHolder="Enter username"
-            isShowed={false}
-            onChange={setUserName}
-          />
-          <InputField
-            source={require("../assets/images/icons-lock.png")}
-            placeHolder="Enter password"
-            isShowed={true}
-            onChange={setPass}
-          />
-          <Option />
-          <ButtonLogin content="Sign in to S&C" onPress={() => navigation.navigate('Home')} />
-          <SignUp />
-        </View>
+        <AuthContent isLogin onAuthenticate={handleLogin} />
       </View>
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: "10%",
@@ -67,14 +56,5 @@ const styles = StyleSheet.create({
   header: {
     marginVertical: "8%",
     marginLeft: "5%",
-  },
-
-  signin_container: {
-    marginHorizontal: "5%",
-  },
-
-  text: {
-    fontSize: 20,
-    fontWeight: "600",
   },
 });

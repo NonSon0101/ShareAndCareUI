@@ -1,40 +1,71 @@
-import { Pressable, StatusBar, StyleSheet, SafeAreaView, View, Text, Image } from "react-native";
+import {
+    Pressable,
+    StatusBar,
+    StyleSheet,
+    ScrollView,
+    View,
+    Text,
+    Image,
+} from "react-native";
+import { useContext } from "react";
+
+import { AuthContext } from "../store/auth-context";
 import BackButton from "../components/BackButton";
 import { MenuButton } from "../components/HeaderButton";
+import HeaderButton from "../components/HeaderButton";
+import { Ionicons } from "@expo/vector-icons";
 
-const ProfileScreen = ({navigation}) => {
+
+const ProfileScreen = ({ navigation }) => {
+    const authCtx = useContext(AuthContext);
+    const info = authCtx.userInfo;
+
     return (
-        <SafeAreaView style={screenStyle}>
+        <ScrollView style={screenStyle}>
             <View style={headerStyle.container}>
-                <BackButton onPress={() => navigation.navigate("Home")}/>
+                {/* <BackButton onPress={() => navigation.navigate("Home")} /> */}
                 <Text style={headerStyle.text}>My Profile</Text>
-                <MenuButton onPress={() => navigation.openDrawer()}/>
+                <HeaderButton
+                    icon={<Ionicons name="reorder-three" size={30} color="black" />}
+                    onPress={() => navigation.openDrawer('HomeMenu')}
+                />
             </View>
-            
-            <View style={profileMenuStyles.view} onPress={() => navigation.navigate("Profile")}>
+
+            <View
+                style={profileMenuStyles.view}
+                onPress={() => navigation.navigate("Profile")}
+            >
                 <View style={profileMenuStyles.image.container}>
-                    <Image source={{ 
-                        uri: 'https://i.pinimg.com/564x/40/70/d9/4070d9574b34038f45af74f6221ec19a.jpg'}}
+                    <Image
+                        source={{
+                            uri: "https://i.pinimg.com/564x/40/70/d9/4070d9574b34038f45af74f6221ec19a.jpg",
+                        }}
                         style={profileMenuStyles.image.image}
-                        />
+                    />
                     <Pressable>
                         <Text style={profileMenuStyles.image.text}>Change photo</Text>
                     </Pressable>
                 </View>
-                <View style={{ justifyContent: 'center'}}>
-                    <Text style={profileMenuStyles.text1}>Duck UI</Text>
-                    <Text style={profileMenuStyles.text2}>a@gmail.com</Text>
+                <View style={{ justifyContent: "center" }}>
+                    <Text style={profileMenuStyles.text1}>{info.username}</Text>
+                    <Text style={profileMenuStyles.text2}>{info.email}</Text>
                 </View>
             </View>
 
             <View style={timeJoinTextStyle.container}>
-                <Image source={require('../assets/images/clock-icon.png')} style={timeJoinTextStyle.image}/>
+                <Image
+                    source={require("../assets/images/clock-icon.png")}
+                    style={timeJoinTextStyle.image}
+                />
                 <Text style={timeJoinTextStyle.text}>Duck joined 1 day ago</Text>
             </View>
 
             <View style={formStyle.container}>
                 <Text style={formStyle.text1}>Level</Text>
-                <Image source={require('../assets/images/level-1.png')} style={formStyle.image}/>
+                <Image
+                    source={require("../assets/images/level-1.png")}
+                    style={formStyle.image}
+                />
             </View>
 
             <View style={formStyle.container}>
@@ -44,7 +75,7 @@ const ProfileScreen = ({navigation}) => {
 
             <View style={formStyle.container}>
                 <Text style={formStyle.text1}>Listings Offered</Text>
-                <View style = {{flexDirection: 'row'}}>
+                <View style={{ flexDirection: "row" }}>
                     <View style={listFormStyle.container}>
                         <Text style={listFormStyle.text1}>0</Text>
                         <Text style={listFormStyle.text2}>Last 30 days</Text>
@@ -55,130 +86,129 @@ const ProfileScreen = ({navigation}) => {
                     </View>
                 </View>
             </View>
-
-        </SafeAreaView>
-    )
-}
+        </ScrollView>
+    );
+};
 
 const screenStyle = StyleSheet.create({
     flex: 1,
-    marginTop: StatusBar.currentHeight
-})
+    marginTop: StatusBar.currentHeight,
+});
 
 const headerStyle = StyleSheet.create({
     container: {
-        borderStyle: 'solid',
-        borderColor: '#D9D9D9',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        borderStyle: "solid",
+        borderColor: "#D9D9D9",
+        flexDirection: "row",
+        justifyContent: "space-between",
         marginHorizontal: 15,
-        marginVertical: 10
+        marginVertical: 10,
     },
 
     text: {
         fontSize: 26,
-        fontWeight: 'bold',
-    }
-})
+        fontWeight: "bold",
+    },
+});
 
 const profileMenuStyles = StyleSheet.create({
     view: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        marginHorizontal: '5%',
-        marginVertical: 30
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        marginHorizontal: "5%",
+        marginVertical: 30,
     },
     image: {
         container: {
-            marginHorizontal: '5%',
-            alignItems: 'center'
+            marginHorizontal: "5%",
+            alignItems: "center",
         },
         image: {
             width: 130,
             height: 130,
             borderRadius: 30,
             marginVertical: 10,
-      },
+        },
         text: {
-            textDecorationLine: 'underline',
-      }
+            textDecorationLine: "underline",
+        },
     },
     text1: {
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: "bold",
     },
     text2: {
         fontSize: 20,
-    }
-})
+    },
+});
 
 const timeJoinTextStyle = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        borderStyle: 'solid',
+        flexDirection: "row",
+        borderStyle: "solid",
         borderBottomWidth: 1,
-        borderColor: '#000000',
+        borderColor: "#000000",
         paddingBottom: 10,
-        marginHorizontal: '5%',
-        marginVertical: 10
+        marginHorizontal: "5%",
+        marginVertical: 10,
     },
     image: {
         width: 30,
-        height: 30
+        height: 30,
     },
     text: {
         marginHorizontal: 10,
         fontSize: 20,
-        alignSelf: 'flex-end'
-    }
-})
+        alignSelf: "flex-end",
+    },
+});
 
 const formStyle = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        flexDirection: 'column',
-        borderStyle: 'solid',
+        justifyContent: "center",
+        flexDirection: "column",
+        borderStyle: "solid",
         borderBottomWidth: 1,
-        borderColor: '#000000',
+        borderColor: "#000000",
         paddingBottom: 10,
-        marginHorizontal: '5%',
-        marginVertical: 10
+        marginHorizontal: "5%",
+        marginVertical: 10,
     },
     text1: {
         fontSize: 30,
-        fontWeight: 'bold',
-        alignSelf: 'center'
+        fontWeight: "bold",
+        alignSelf: "center",
     },
     text2: {
         fontSize: 20,
-        alignSelf: 'center',
-        marginVertical: 20
+        alignSelf: "center",
+        marginVertical: 20,
     },
     image: {
-        alignSelf: 'center',
+        alignSelf: "center",
         width: 100,
-        height: 100
-    }
-})
+        height: 100,
+    },
+});
 
 const listFormStyle = StyleSheet.create({
     container: {
-        backgroundColor: '#E8E5E5',
-        flexDirection: 'column',
-        marginHorizontal: '2%',
+        backgroundColor: "#E8E5E5",
+        flexDirection: "column",
+        marginHorizontal: "2%",
         marginVertical: 20,
         paddingVertical: 20,
-        width: '45%'
+        width: "45%",
     },
     text1: {
         fontSize: 40,
-        fontWeight: 'bold',
-        alignSelf: 'center'
+        fontWeight: "bold",
+        alignSelf: "center",
     },
     text2: {
         fontSize: 20,
-        alignSelf: 'center'
-    }
-})
+        alignSelf: "center",
+    },
+});
 
 export default ProfileScreen;

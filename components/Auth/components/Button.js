@@ -1,6 +1,6 @@
 import { Pressable, Text, StyleSheet } from "react-native";
 
-export default function buttonlogin(props) {
+export default function Button(props) {
     return (
         <Pressable style={styles.buttonlogin} onPress={props.onPress}>
             <Text style={styles.text}>{props.content}</Text>

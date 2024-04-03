@@ -1,6 +1,5 @@
 import LoginScreen from "./LoginScreen";
 import WelcomeScreen from "./WelcomeScreen";
-import SignUpScreen from "./SignUpScreen";
 import HomeScreen from "./HomeScreen";
 import AccountScreen from "./AccountScreen";
 import FriendScreen from "./FriendScreen";
@@ -12,11 +11,12 @@ import MapScreen from "./MapScreen";
 import ProfileScreen from "./ProfileScreen";
 import ProductScreen from "./ProductScreen";
 import MessageScreen from "./MessageScreen";
+import ForgotPasswordScreen from "./FogotPasswordScreen";
+import SignUpScreen from "./SignUpScreen";
 
 export {
     LoginScreen,
     WelcomeScreen,
-    SignUpScreen,
     HomeScreen,
     ProfileScreen,
     AccountScreen,
@@ -27,5 +27,7 @@ export {
     RevenueScreen,
     MapScreen,
     ProductScreen,
-    MessageScreen
+    MessageScreen,
+    ForgotPasswordScreen,
+    SignUpScreen,
 }

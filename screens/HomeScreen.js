@@ -75,11 +75,11 @@ export default function HomeScreen({ navigation }) {
       </View>
 
       <ScrollView style={styles.listItem}>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        <Product onPress={() => navigation.navigate('ProductDetail')} />
+        <Product onPress={() => navigation.navigate('ProductDetail')} />
+        <Product onPress={() => navigation.navigate('ProductDetail')} />
+        <Product onPress={() => navigation.navigate('ProductDetail')} />
+        <Product onPress={() => navigation.navigate('ProductDetail')} />
       </ScrollView>
 
       <SafeAreaView style={{ position: "absolute", bottom: -39 }}>

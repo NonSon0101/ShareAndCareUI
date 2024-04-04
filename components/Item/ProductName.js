@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function ProductName() {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>English Books</Text>
+            <Text style={styles.text}>Black T-Shirt</Text>
         </View>
     );
 }

@@ -182,6 +182,11 @@ function HomeStack() {
         component={screens.MessageScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="ProductDetail"
+        component={screens.ProductDetail}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

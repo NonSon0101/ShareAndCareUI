@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useContext } from "react";
 import {
   SafeAreaView,
@@ -19,13 +18,14 @@ export default function LoginScreen() {
   const handleLogin = async ({ email, password }) => {
     try {
       const response = await login({ email, password });
-      // Handle successful login
-      authCtx.authenticate(
-        response.tokens.accessToken,
-        response.tokens.refreshToken,
-        response.user.usr_name,
-        response.user.usr_email
-      );
+
+      authCtx.authenticate({
+        refreshToken: response.tokens.refreshToken,
+        accessToken: response.tokens.accessToken,
+        userId: response.user._id,
+        username: response.user.usr_name,
+        email: response.user.usr_email,
+      });
     } catch (error) {
       // Handle login error
       console.error("Login error:", error.stack);

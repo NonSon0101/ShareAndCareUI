@@ -47,10 +47,10 @@ function AuthContent({ isLogin, isResetPassword, onAuthenticate }) {
         <View>
             <AuthForm
                 isLogin={isLogin}
+                isResetPassword={isResetPassword}
                 onSubmit={submitHandler}
                 credentialInvalid={credentialIsInvalid}
             />
-
         </View>
     );
 }

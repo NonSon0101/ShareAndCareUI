@@ -10,15 +10,19 @@ export const AuthContext = createContext({
     logout: () => { }
 });
 
+
+
 function AuthContextProvider({ children }) {
     const [authToken, setAuthToken] = useState();
     const [refreshToken, setRefreshToken] = useState();
-    const [userInfo, setUserInfo] = useState({ email: '', username: '' });
+    const [userInfo, setUserInfo] = useState({ userId: '', email: '', username: '' });
 
-    function authenticate(refreshToken, accessToken, username, email) {
+    function authenticate({ refreshToken, accessToken, userId, username, email }) {
+        console.log('log at AuthContextProvider', refreshToken, accessToken, userId, username, email);
         setAuthToken(accessToken);
         setRefreshToken(refreshToken);
-        setUserInfo({ email: email, username: username })
+        setUserInfo({ userId, email, username })
+
         AsyncStorage.setItem('refreshToken', refreshToken);
         AsyncStorage.setItem('accessToken', accessToken);
     }
@@ -26,7 +30,8 @@ function AuthContextProvider({ children }) {
     function logout() {
         setAuthToken(null);
         setRefreshToken(null);
-        setUserInfo({ email: null, username: null })
+        setUserInfo({ userId: null, email: null, username: null })
+
         AsyncStorage.removeItem('refreshToken');
         AsyncStorage.removeItem('accessToken');
     }

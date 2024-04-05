@@ -38,11 +38,6 @@ function Auth() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Welcome"
-        component={screens.WelcomeScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="Login"
         component={screens.LoginScreen}
         options={{ headerShown: false }}
@@ -182,11 +177,6 @@ function HomeStack() {
         component={screens.MessageScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="ProductDetail"
-        component={screens.ProductDetail}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 }
@@ -209,18 +199,23 @@ function Root() {
 
   useEffect(() => {
     async function fetchToken() {
-      const storedToken = await AsyncStorage.getItem("accessToken");
-      if (storedToken) {
-        authCtx.authenticate(storedToken);
+      try {
+
+        const storedToken = await AsyncStorage.getItem("accessToken");
+        if (storedToken) {
+          authCtx.authenticate(storedToken);
+        }
+        // setIsTryingLogin(false);
+      } catch (error) {
+        console.error('fetch token error: ', error);
       }
-      // setIsTryingLogin(false);
     }
     fetchToken();
   }, []);
 
   // if (isTryingLogin) {
   //   return <AppLoading />;
-  // }
+  // }s
 
   return <Navigation />;
 }

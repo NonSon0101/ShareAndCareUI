@@ -5,15 +5,15 @@ import ProductName from './ProductName';
 import Owner from './Owner';
 import Status from './Status';
 
-export default function Product({ onPress }) {
+export default function Product(props) {
     return (
         <SafeAreaView style={styles.container}>
-            <Pressable style={styles.container__details} onPress={onPress} >
-                <Image style={styles.image} source={require('../../assets/images/image2.png')} />
+            <Pressable style={styles.container__details} >
+                <Image style={styles.image} source={props.Image} />
                 <SafeAreaView style={styles.info}>
                     <PriceFree />
-                    <ProductName />
-                    <Owner />
+                    <ProductName ProductName={props.ProductName} />
+                    <Owner Owner={props.Owner} />
                     <Status />
                 </SafeAreaView>
             </Pressable>

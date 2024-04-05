@@ -33,11 +33,12 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     input: {
-        paddingVertical: 8,
+        width: '100%',
+        paddingVertical: 2,
         paddingHorizontal: 6,
-        backgroundColor: '#f9beda',
         borderRadius: 4,
         fontSize: 16,
+        overflow: 'hidden'
     },
     inputInvalid: {
         backgroundColor: '#fcdcbf',

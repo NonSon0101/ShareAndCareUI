@@ -52,6 +52,11 @@ function Auth() {
         component={screens.ForgotPasswordScreen}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="OTPScreen"
+        component={screens.OTPScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

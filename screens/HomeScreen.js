@@ -10,7 +10,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
-import { getAllProduct } from "../util/product.js";
+import { getAllProduct } from "../API/Product/index.js";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -23,30 +23,20 @@ import Product from "../components/Item/Product.js";
 import Footer from "../components/footer/Footer.js";
 
 export default function HomeScreen({ navigation }) {
-  const authCtx = useContext(AuthContext);
-  const info = authCtx.userInfo;
-  const userId = info.userId;
-  console.log("log at HomeScreen", userId);
-  const accessToken = authCtx.token;
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    if (!userId) {
-      return;
-    }
     async function fetchAllProduct() {
       try {
-        const products = await getAllProduct({ userId, accessToken });
+        const products = await getAllProduct();
         setProductList(products);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     }
-
     fetchAllProduct();
-  }, [userId, accessToken]);
+  }, []);
 
-  console.log("log at fetchAllProduct", productList);
 
   function openDrawerHandler() {
     navigation.openDrawer();

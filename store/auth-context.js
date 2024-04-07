@@ -10,6 +10,13 @@ export const AuthContext = createContext({
     logout: () => { }
 });
 
+async function setToken(name, value) {
+    try {
+        await AsyncStorage.setItem(name, value);
+    } catch (error) {
+        console.error('Error when set token: ', error);
+    }
+}
 
 
 function AuthContextProvider({ children }) {
@@ -22,9 +29,10 @@ function AuthContextProvider({ children }) {
         setAuthToken(accessToken);
         setRefreshToken(refreshToken);
         setUserInfo({ userId, email, username })
-
-        AsyncStorage.setItem('refreshToken', refreshToken);
-        AsyncStorage.setItem('accessToken', accessToken);
+        if (accessToken && refreshToken) {
+            setToken('refreshToken', refreshToken);
+            setToken('accessToken', accessToken);
+        }
     }
 
     function logout() {

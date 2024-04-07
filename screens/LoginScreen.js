@@ -8,16 +8,15 @@ import {
   Alert,
 } from "react-native";
 import { AuthContext } from "../store/auth-context.js";
-import { login } from "../util/login.js";
+import { auth } from "../API/auth/index.js";
 
 import AuthContent from "../components/Auth/AuthContent.js";
 
 export default function LoginScreen() {
   const authCtx = useContext(AuthContext);
-
-  const handleLogin = async ({ email, password }) => {
+  const handleLogin = async ({ mode, email, password }) => {
     try {
-      const response = await login({ email, password });
+      const response = await auth({ mode, email, password });
 
       authCtx.authenticate({
         refreshToken: response.tokens.refreshToken,
@@ -42,7 +41,7 @@ export default function LoginScreen() {
         <View style={styles.header}>
           <Image source={require("../assets/images/logo copy.png")} />
         </View>
-        <AuthContent isLogin onAuthenticate={handleLogin} />
+        <AuthContent isLogin={true} onAuthenticate={handleLogin} />
       </View>
     </SafeAreaView>
   );

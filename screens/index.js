@@ -13,6 +13,7 @@ import ProductScreen from "./ProductScreen";
 import MessageScreen from "./MessageScreen";
 import ForgotPasswordScreen from "./FogotPasswordScreen";
 import SignUpScreen from "./SignUpScreen";
+import OTPScreen from "./OtpConfirmScreen";
 
 export {
     LoginScreen,
@@ -30,4 +31,6 @@ export {
     MessageScreen,
     ForgotPasswordScreen,
     SignUpScreen,
+    OTPScreen
+
 }

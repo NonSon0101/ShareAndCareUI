@@ -14,7 +14,6 @@ async function setToken(name, value) {
     try {
         await AsyncStorage.setItem(name, value);
     } catch (error) {
-        console.error('Error when set token: ', error);
     }
 }
 

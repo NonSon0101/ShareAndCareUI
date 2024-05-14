@@ -24,8 +24,6 @@ export default function ProductDetailScreen({ route }) {
     const { source, id, image, name, price, attributes, description, rating } =
         route.params;
 
-    console.log('ProductDetailScreen', image)
-
     const navigation = useNavigation();
 
     const [refreshing, setRefreshing] = useState(false);
@@ -37,7 +35,6 @@ export default function ProductDetailScreen({ route }) {
             const product = await getProductById(id);
             setProductDetail(product);
         } catch (error) {
-            console.error("Error fetching product:", error);
         } finally {
             setRefreshing(false);
         }
@@ -63,7 +60,6 @@ export default function ProductDetailScreen({ route }) {
                 const product = await getProductById(id);
                 setProductDetail(product);
             } catch (error) {
-                console.error("Error fetching product:", error);
             }
         }
         fetchProductDetail();
@@ -75,7 +71,7 @@ export default function ProductDetailScreen({ route }) {
                 <Pressable
                     style={{ marginTop: 50, marginLeft: 20 }}
                     onPress={() =>
-                        navigation.navigate("Home")
+                        navigation.goBack("Home")
                     }
                 >
                     <LeftArrowIcon />

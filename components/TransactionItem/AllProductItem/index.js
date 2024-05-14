@@ -6,6 +6,7 @@ import {
     Pressable,
     FlatList
 } from "react-native";
+import Toast from 'react-native-toast-message';
 
 import AllProduct from "../../Item/AllProduct";
 import { getAllProduct } from "../../../API/Product/index.js";
@@ -21,7 +22,7 @@ export default function AllProductItem() {
                 const products = await getAllProduct();
                 setProductList(products);
             } catch (error) {
-                console.error("Error fetching products:", error);
+                Toast.show(error)
             }
         }
         fetchAllProduct();
@@ -71,8 +72,8 @@ export default function AllProductItem() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#E8E8E8",
-        padding: 10,
-        marginVertical: 5,
+        paddingX: 10,
+        marginVertical: 0,
     },
     rowContainer: {
         flexDirection: "row",

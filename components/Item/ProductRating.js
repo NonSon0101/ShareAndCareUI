@@ -22,7 +22,6 @@ export default function ProductRating(props) {
                 const comments = await getProductComment(3, props.productId, userId, accessToken);
                 setCommentList(comments);
             } catch (error) {
-                console.error("Error fetching comments:", error);
             }
         }
         fetchAllComment();

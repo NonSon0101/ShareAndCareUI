@@ -1,5 +1,5 @@
 import api from "../API";
-
+import get from 'lodash/get'
 const PRODUCT_URL = '/v1/api/product';
 
 export async function getAllProduct() {
@@ -7,7 +7,8 @@ export async function getAllProduct() {
         const respone = await api.get(`${PRODUCT_URL}/advanced-search`);
         return respone.data.metadata;
     } catch (error) {
-        console.error("Error at getAllProduct", error);
+        const errorMessage = get(error, 'data.error.message', '') || JSON.stringify(error);
+        throw new Error(errorMessage);
     }
 }
 
@@ -16,7 +17,8 @@ export async function getProductDetail(productId) {
         const respone = await api.get(`${PRODUCT_URL}/${productId}`)
         return respone.data.metadata
     } catch (error) {
-        console.error("Error at getProductDetail", error);
+        const errorMessage = get(error, 'data.error.message', '') || JSON.stringify(error);
+        throw new Error(errorMessage);
     }
 }
 
@@ -25,7 +27,8 @@ export async function searchProduct(productName) {
         const respone = await api.get(`${PRODUCT_URL}/search/${productName}`)
         return respone.data.metadata
     } catch (error) {
-        console.error("Error at searchProduct", error);
+        const errorMessage = get(error, 'data.error.message', '') || JSON.stringify(error);
+        throw new Error(errorMessage);
     }
 }
 
@@ -34,6 +37,7 @@ export async function getProductById(id) {
         const response = await api.get(`${PRODUCT_URL}/${id}`);
         return response.data.metadata;
     } catch (error) {
-        console.error("Error at getProductById", error);
+        const errorMessage = get(error, 'data.error.message', '') || JSON.stringify(error);
+        throw new Error(errorMessage);
     }
 }

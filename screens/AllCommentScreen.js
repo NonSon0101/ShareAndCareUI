@@ -30,7 +30,6 @@ export default function AllCommentScreen({ route }) {
         const comments = await getProductComment(10, id, userId, accessToken);
         setCommentList(comments);
       } catch (error) {
-        console.error("Error fetching comments:", error);
       }
     }
     fetchAllComment();
@@ -54,12 +53,12 @@ export default function AllCommentScreen({ route }) {
           const comments = await getProductComment(10, id, userId, accessToken);
           setCommentList(comments);
         } catch (error) {
-          console.error("Error fetching comments:", error);
+
         }
       }
       fetchAllComment();
     } catch (error) {
-      console.error("Error adding comment:", error);
+
     }
   };
 

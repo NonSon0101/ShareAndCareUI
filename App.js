@@ -6,6 +6,7 @@ import {
   DrawerToggleButton,
 } from "@react-navigation/drawer";
 import { useContext, useEffect, useState } from "react";
+import Toast from "react-native-toast-message";
 import { TouchableOpacity, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -202,6 +203,7 @@ function Navigation() {
     <NavigationContainer>
       {!authCtx.isAuthenticated && <Auth />}
       {authCtx.isAuthenticated && <HomeStack />}
+      <Toast />
     </NavigationContainer>
   );
 }
@@ -220,7 +222,6 @@ function Root() {
         }
         // setIsTryingLogin(false);
       } catch (error) {
-        console.error("fetch token error: ", error);
       }
     }
     fetchToken();
@@ -237,6 +238,7 @@ export default function App() {
   return (
     <AuthConTextProvider>
       <Root />
+
     </AuthConTextProvider>
   );
 }

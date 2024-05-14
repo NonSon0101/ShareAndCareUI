@@ -7,6 +7,7 @@ import {
   Image,
   Alert,
 } from "react-native";
+import Toast from "react-native-toast-message";
 import { AuthContext } from "../store/auth-context.js";
 import { auth } from "../API/auth/index.js";
 
@@ -26,12 +27,6 @@ export default function LoginScreen() {
         email: response.user.usr_email,
       });
     } catch (error) {
-      // Handle login error
-      console.error("Login error:", error.stack);
-      Alert.alert(
-        "Login Failed",
-        "Please check your credentials and try again."
-      );
     }
   };
 

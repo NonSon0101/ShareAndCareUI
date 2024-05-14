@@ -64,7 +64,6 @@ const OTPScreen = () => {
                 email: response.user.usr_email,
             });
         } catch (error) {
-            console.error("Error at handleOTPFilled", error);
         }
     };
 
@@ -83,7 +82,6 @@ const OTPScreen = () => {
             }, 7000)
             setSendOtp(true);
         } catch (error) {
-            console.error('Error at handleResendOtp', error);
         }
     }
 

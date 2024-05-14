@@ -15,7 +15,6 @@ export default function SignUpScreen() {
         navigation.navigate("OTPScreen");
       }
     } catch (error) {
-      console.error("Signup error:", error.stack);
       Alert.alert(
         "Signup Failed",
         "Please check your credentials and try again."

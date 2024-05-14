@@ -72,7 +72,8 @@ export default function AllProductItem() {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#E8E8E8",
-        paddingX: 10,
+        paddingHorizontal: 10,
+        paddingBottom: 230,
         marginVertical: 0,
     },
     rowContainer: {

@@ -63,7 +63,19 @@ export default function SearchScreen({ navigation }) {
                 </ScrollView>
             </View>
             <ScrollView style={styles.searchResult}>
-                {searchResult && searchResult.map((product) => <Product product={product} />)}
+                {searchResult && searchResult.map((product) =>
+                    <Product key={product._id} product={product} onPress={() =>
+                        navigation.navigate("ProductDetail", {
+                            source: "HomePageScreen",
+                            id: product._id,
+                            image: product.product_thumb,
+                            name: product.product_name,
+                            price: product.product_price,
+                            attributes: product.product_attributes,
+                            description: product.product_description,
+                            rating: product.product_ratingsAverage,
+                        })}
+                    />)}
             </ScrollView>
         </SafeAreaView>
     );

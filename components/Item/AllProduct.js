@@ -35,7 +35,7 @@ export default function AllProduct(props) {
                         <RateIcon color={"#FFC300"} />
                         <Text>{props.rating}</Text>
                     </SafeAreaView>
-                    <Price Price={props.price} />
+                    <Price Price={(props.price)} />
                     {/* <Owner Owner={props.Owner} /> */}
                 </SafeAreaView>
             </Pressable>

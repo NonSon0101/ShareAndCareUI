@@ -19,6 +19,7 @@ import ProductRating from "../components/Item/ProductRating";
 import { useCallback, useEffect, useState } from "react";
 import { getProductById } from "../API/Product";
 import { useNavigation } from "@react-navigation/native";
+import { formatCurrency } from "../util/common";
 
 export default function ProductDetailScreen({ route }) {
     const { source, id, image, name, price, attributes, description, rating } =
@@ -113,7 +114,7 @@ export default function ProductDetailScreen({ route }) {
                         <Text style={styles.itemText}>
                             {JSON.stringify(name).replace(/"/g, "")}
                         </Text>
-                        <Text style={styles.itemText}>{JSON.stringify(price)}</Text>
+                        <Text style={styles.itemText}>{formatCurrency(price)}</Text>
                         <SafeAreaView style={styles.statisticContainer}>
                             <SafeAreaView style={[styles.rowContainer, { paddingRight: 20 }]}>
                                 <RateIcon color={"#FFC300"} />

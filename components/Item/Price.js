@@ -1,13 +1,11 @@
 import { StyleSheet, View, Text } from "react-native";
+import { formatCurrency } from "../../util/common";
 
 import Gift from "../icons/Gift";
 export default function Price(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.icon}>
-        <Gift />
-      </View>
-      <Text style={styles.text}>{props.Price}</Text>
+      <Text style={styles.text}>{formatCurrency(props.Price)}</Text>
     </View>
   );
 }
@@ -18,8 +16,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#EFEFEF",
     justifyContent: "space-evenly",
     height: 24,
-    width: 100,
-    alignItems: "center",
+    width: "100%",
+    alignItems: "flex-start",
     padding: 2,
     borderRadius: 20,
   },
@@ -30,5 +28,6 @@ const styles = StyleSheet.create({
 
   text: {
     fontWeight: "600",
+    textAlign: "left"
   },
 });

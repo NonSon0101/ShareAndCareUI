@@ -15,10 +15,7 @@ export default function SignUpScreen() {
         navigation.navigate("OTPScreen");
       }
     } catch (error) {
-      Alert.alert(
-        "Signup Failed",
-        "Please check your credentials and try again."
-      );
+
     }
   };
 

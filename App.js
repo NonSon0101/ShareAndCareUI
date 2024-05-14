@@ -33,6 +33,11 @@ function Auth() {
   return (
     <Stack.Navigator>
       <Stack.Screen
+        name="Welcome"
+        component={screens.WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
         name="Login"
         component={screens.LoginScreen}
         options={{ headerShown: false }}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Pressable, Text, StyleSheet } from 'react-native';
+import { View, Pressable, Text, StyleSheet } from 'react-native';
 import MessageIcon from '../icons/MessageIcon';
 import AddToCartIcon from "../icons/AddToCartIcon"
 
@@ -11,23 +11,23 @@ const ProductFooter = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <SafeAreaView style={[styles.rowContainer, { backgroundColor: '#D9D9D9' }]}>
-        <SafeAreaView style={styles.item}>
+    <View style={styles.container}>
+      <View style={[styles.rowContainer, { backgroundColor: '#D9D9D9' }]}>
+        <View style={styles.item}>
           <Pressable style={styles.iconButton}>
             <MessageIcon color={'#000000'} />
           </Pressable>
           <Pressable style={styles.iconButton}>
             <AddToCartIcon color={'#000000'} />
           </Pressable>
-        </SafeAreaView>
-      </SafeAreaView>
-      <SafeAreaView style={[styles.rowContainer, { backgroundColor: '#38A59F' }]}>
+        </View>
+      </View>
+      <View style={[styles.rowContainer, { backgroundColor: '#38A59F' }]}>
         <Pressable style={styles.item} onPress={addToCart}>
           <Text style={styles.text}>Buy now</Text>
         </Pressable>
-      </SafeAreaView>
-    </SafeAreaView>
+      </View>
+    </View>
   );
 };
 

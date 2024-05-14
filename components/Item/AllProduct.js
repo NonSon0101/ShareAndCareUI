@@ -18,7 +18,7 @@ export default function AllProduct(props) {
     let transactionState = [styles.transactionStyle];
 
     if (freeProduct) {
-        transaction = "Free";
+        transaction = "Free Ship";
         transactionState.push(styles.freeStyle);
     }
 

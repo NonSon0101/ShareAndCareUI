@@ -10,6 +10,8 @@ import {
     Button,
     Modal,
     RefreshControl,
+    ImageBackground
+
 } from "react-native";
 import ProductFooter from "../components/footer/ProductFooter";
 import RateIcon from "../components/icons/RateIcon";
@@ -66,273 +68,111 @@ export default function ProductDetailScreen({ route }) {
         fetchProductDetail();
     }, [id]);
 
-    if (source === "HomePageScreen") {
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <Pressable
-                    style={{ marginTop: 50, marginLeft: 20 }}
-                    onPress={() =>
-                        navigation.goBack("Home")
-                    }
-                >
-                    <LeftArrowIcon />
-                </Pressable>
-                <ScrollView
-                    style={styles.itemStyles}
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                    }
-                >
-                    <Image style={styles.image} source={{ uri: image }} />
+    return (
+        <View style={{ flex: 1 }}>
 
-                    <SafeAreaView style={styles.imageContainer}>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image1.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image2.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image3.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image4.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image5.png")}
-                            />
-                        </ScrollView>
-                    </SafeAreaView>
-
-                    <SafeAreaView style={styles.itemContainer}>
-                        <Text style={styles.itemText}>
-                            {JSON.stringify(name).replace(/"/g, "")}
-                        </Text>
-                        <Text style={styles.itemText}>{formatCurrency(price)}</Text>
-                        <SafeAreaView style={styles.statisticContainer}>
-                            <SafeAreaView style={[styles.rowContainer, { paddingRight: 20 }]}>
-                                <RateIcon color={"#FFC300"} />
-                                <Text style={styles.statisticText}>
-                                    {JSON.stringify(rating)}
-                                </Text>
-                            </SafeAreaView>
-                            <SafeAreaView
-                                style={[
-                                    styles.rowContainer,
-                                    { paddingLeft: 20, borderLeftWidth: 0.5 },
-                                ]}
-                            >
-                                <Text style={styles.statisticText}>Sold: 1</Text>
-                            </SafeAreaView>
-                        </SafeAreaView>
-                    </SafeAreaView>
-
-                    <Pressable
-                        style={[styles.detailContainer, { flexDirection: "row" }]}
-                        onPress={handleOpenBottomSheet}
+            <ScrollView
+                style={{ flex: 1, marginBottom: 50 }}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            >
+                <SafeAreaView style={{ width: "100%" }}>
+                    <ImageBackground
+                        source={{ uri: productDetail?.product_thumb }}
+                        resizeMode="cover"
+                        style={styles.image}
                     >
-                        <Text style={styles.title}>Product Detail</Text>
-                        <RightArrowIcon />
-                    </Pressable>
-
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={isBottomSheetOpen}
-                        onRequestClose={handleCloseBottomSheet}
-                    >
-                        <SafeAreaView style={styles.modalContainer}>
-                            <View style={styles.modalContent}>
-                                <Button title="Close" onPress={handleCloseBottomSheet} />
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Brand: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {attributes.brand}
-                                    </Text>
-                                </View>
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Size: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {attributes.size}
-                                    </Text>
-                                </View>
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Material: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {attributes.material}
-                                    </Text>
-                                </View>
-                            </View>
-                        </SafeAreaView>
-                    </Modal>
-
-                    <Pressable
-                        style={[
-                            styles.detailContainer,
-                            { flexDirection: "column", alignItems: "flex-start" },
-                        ]}
-                    >
-                        <Text style={[styles.title, { marginBottom: 10 }]}>
-                            Product Description
-                        </Text>
-                        <Text style={styles.contentText}>
-                            {JSON.stringify(description).replace(/"/g, "")}
-                        </Text>
-                    </Pressable>
-
-                    <ProductRating productId={id} rating={JSON.stringify(rating)} />
-                </ScrollView>
-                <SafeAreaView style={{ position: "absolute", bottom: 0 }}>
-                    <ProductFooter />
+                        <Pressable
+                            style={{ minHeight: 350, marginTop: 50, marginLeft: 20, backgroundColor: 'transparent' }}
+                            onPress={() =>
+                                navigation.goBack()
+                            }
+                        >
+                            <LeftArrowIcon />
+                        </Pressable>
+                    </ImageBackground>
                 </SafeAreaView>
-            </SafeAreaView>
-        );
-    } else {
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
+
+
+
+                <View style={styles.imageContainer}>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                        <Image style={styles.otherImage} source={require("../assets/images/image1.png")} />
+                        <Image style={styles.otherImage} source={require("../assets/images/image2.png")} />
+                        <Image style={styles.otherImage} source={require("../assets/images/image3.png")} />
+                        <Image style={styles.otherImage} source={require("../assets/images/image4.png")} />
+                        <Image style={styles.otherImage} source={require("../assets/images/image5.png")} />
+                    </ScrollView>
+                </View>
+
+                <View style={styles.itemContainer}>
+                    <Text style={styles.itemText}>{productDetail?.product_name}</Text>
+                    <Text style={styles.itemText}>{productDetail?.product_price}</Text>
+                    <View style={styles.statisticContainer}>
+                        <View style={[styles.rowContainer, { paddingRight: 20 }]}>
+                            <RateIcon color={"#FFC300"} />
+                            <Text style={styles.statisticText}>{productDetail?.product_ratingAverage}</Text>
+                        </View>
+                        <View style={[styles.rowContainer, { paddingLeft: 20, borderLeftWidth: 0.5 }]}>
+                            <Text style={styles.statisticText}>Sold: 1</Text>
+                        </View>
+                    </View>
+                </View>
+
                 <Pressable
-                    style={{ marginTop: 50, marginLeft: 20 }}
-                    onPress={() =>
-                        navigation.navigate("Home")
-                    }
+                    style={styles.detailContainer}
+                    onPress={handleOpenBottomSheet}
                 >
-                    <LeftArrowIcon />
+                    <Text style={styles.title}>Product Detail</Text>
+                    <RightArrowIcon />
                 </Pressable>
-                <ScrollView
-                    style={styles.itemStyles}
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                    }
+
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={isBottomSheetOpen}
+                    onRequestClose={handleCloseBottomSheet}
                 >
-                    <Image style={styles.image} source={image} />
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
+                            <Button title="Close" onPress={handleCloseBottomSheet} />
 
-                    <SafeAreaView style={styles.imageContainer}>
-                        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image1.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image2.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image3.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image4.png")}
-                            />
-                            <Image
-                                style={styles.otherImage}
-                                source={require("../assets/images/image5.png")}
-                            />
-                        </ScrollView>
-                    </SafeAreaView>
-
-                    <SafeAreaView style={styles.itemContainer}>
-                        <Text style={styles.itemText}>{productDetail?.product_name}</Text>
-                        <Text style={styles.itemText}>{productDetail?.product_price}</Text>
-                        <SafeAreaView style={styles.statisticContainer}>
-                            <SafeAreaView style={[styles.rowContainer, { paddingRight: 20 }]}>
-                                <RateIcon color={"#FFC300"} />
-                                <Text style={styles.statisticText}>
-                                    {productDetail?.product_ratingAverage}
-                                </Text>
-                            </SafeAreaView>
-                            <SafeAreaView
-                                style={[
-                                    styles.rowContainer,
-                                    { paddingLeft: 20, borderLeftWidth: 0.5 },
-                                ]}
-                            >
-                                <Text style={styles.statisticText}>Sold: 1</Text>
-                            </SafeAreaView>
-                        </SafeAreaView>
-                    </SafeAreaView>
-
-                    <Pressable
-                        style={[styles.detailContainer, { flexDirection: "row" }]}
-                        onPress={handleOpenBottomSheet}
-                    >
-                        <Text style={styles.title}>Product Detail</Text>
-                        <RightArrowIcon />
-                    </Pressable>
-
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={isBottomSheetOpen}
-                        onRequestClose={handleCloseBottomSheet}
-                    >
-                        <SafeAreaView style={styles.modalContainer}>
-                            <View style={styles.modalContent}>
-                                <Button title="Close" onPress={handleCloseBottomSheet} />
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Brand: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {productDetail?.product_attributes.brand}
-                                    </Text>
-                                </View>
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Size: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {productDetail?.product_attributes.size}
-                                    </Text>
-                                </View>
-
-                                <View style={styles.detailContent}>
-                                    <Text style={styles.itemText}>Material: </Text>
-                                    <Text style={itemTextWithoutFontWeight}>
-                                        {productDetail?.product_attributes.material}
-                                    </Text>
-                                </View>
+                            <View style={styles.detailContent}>
+                                <Text style={styles.itemText}>Brand: </Text>
+                                <Text style={styles.itemTextWithoutFontWeight}>{productDetail?.product_attributes.brand}</Text>
                             </View>
-                        </SafeAreaView>
-                    </Modal>
 
-                    <Pressable
-                        style={[
-                            styles.detailContainer,
-                            { flexDirection: "column", alignItems: "flex-start" },
-                        ]}
-                    >
-                        <Text style={[styles.title, { marginBottom: 10 }]}>
-                            Product Description
-                        </Text>
-                        <Text style={styles.contentText}>
-                            {productDetail?.product_description}
-                        </Text>
-                    </Pressable>
+                            <View style={styles.detailContent}>
+                                <Text style={styles.itemText}>Size: </Text>
+                                <Text style={styles.itemTextWithoutFontWeight}>{productDetail?.product_attributes.size}</Text>
+                            </View>
 
-                    <ProductRating
-                        productId={id}
-                        rating={productDetail?.product_ratingAverage}
-                    />
-                </ScrollView>
-                <SafeAreaView style={{ position: "absolute", bottom: 0 }}>
-                    <ProductFooter />
-                </SafeAreaView>
-            </SafeAreaView>
-        );
-    }
+                            <View style={styles.detailContent}>
+                                <Text style={styles.itemText}>Material: </Text>
+                                <Text style={styles.itemTextWithoutFontWeight}>{productDetail?.product_attributes.material}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
+
+                <View style={[styles.detailContainer, { flexDirection: "column", alignItems: "flex-start" }]}>
+                    <Text style={[styles.title, { marginBottom: 10 }]}>Product Description</Text>
+                    <Text style={styles.contentText}>{productDetail?.product_description}</Text>
+                </View>
+
+                <ProductRating productId={id} rating={productDetail?.product_ratingAverage} />
+            </ScrollView>
+            <View style={{ position: "absolute", bottom: 0, maginTop: 20 }}>
+                <ProductFooter />
+            </View>
+        </View>
+    );
+
 }
 const styles = StyleSheet.create({
     image: {
         width: "100%",
-        maxHeight: 350,
+        Height: 350,
+        flex: 1
     },
     imageContainer: {
         flexDirection: "row",
@@ -376,7 +216,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         paddingVertical: 5,
         paddingHorizontal: 20,
-        alignItems: "center",
+        alignItems: "start",
     },
     title: {
         fontSize: 18,

@@ -106,7 +106,7 @@ export default function ProductDetailScreen({ route }) {
 
                 <View style={styles.itemContainer}>
                     <Text style={styles.itemText}>{productDetail?.product_name}</Text>
-                    <Text style={styles.itemText}>{productDetail?.product_price}</Text>
+                    <Text style={styles.itemText}>{formatCurrency(productDetail?.product_price)}</Text>
                     <View style={styles.statisticContainer}>
                         <View style={[styles.rowContainer, { paddingRight: 20 }]}>
                             <RateIcon color={"#FFC300"} />

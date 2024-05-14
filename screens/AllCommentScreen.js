@@ -68,10 +68,7 @@ export default function AllCommentScreen({ route }) {
     <SafeAreaView style={{ marginTop: 50, marginLeft: 20 }}>
       <Pressable
         onPress={() =>
-          navigation.navigate("ProductDetail", {
-            id: id,
-            image: require("../assets/images/image2_.png"),
-          })
+          navigation.goBack()
         }
       >
         <LeftArrowIcon />

@@ -25,7 +25,6 @@ function AuthContextProvider({ children }) {
     const [userInfo, setUserInfo] = useState({ userId: '', email: '', username: '' });
 
     function authenticate({ refreshToken, accessToken, userId, username, email }) {
-        console.log('log at AuthContextProvider', refreshToken, accessToken, userId, username, email);
         setAuthToken(accessToken);
         setRefreshToken(refreshToken);
         setUserInfo({ userId, email, username })

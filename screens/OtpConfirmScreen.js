@@ -49,7 +49,6 @@ const OTPScreen = () => {
     };
 
     const handleOTPFilled = async () => {
-        console.log("OTP Filled:", otp.join(""));
 
         const otpCode = otp.join("");
         try {
@@ -110,7 +109,7 @@ const OTPScreen = () => {
                 ))}
             </View>
             <TouchableOpacity style={styles.submitButton} onPress={handleOTPFilled}>
-                <Text style={styles.submitButtonText}>Submit</Text>
+                <Text style={styles.submitButtonText}>Verify</Text>
             </TouchableOpacity>
             <View style={{ marginTop: 8, display: !sendOtp ? 'none' : 'inline' }}>
                 <Text>{isAbleToSend ? 'The OTP has been resent to your email!' : 'Please wait 1 miniute before you want to resend OTP!'}</Text>

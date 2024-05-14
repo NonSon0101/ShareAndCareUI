@@ -12,12 +12,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // import AppLoading from "expo-app-loading";
 
-import {
-  HomeScreen,
-  LoginScreen,
-  SignUpScreen,
-  WelcomeScreen,
-} from "./screens";
 import * as screens from "./screens";
 import MenuComponent from "./components/MenuComponent";
 import AuthConTextProvider, { AuthContext } from "./store/auth-context";
@@ -114,7 +108,7 @@ function HomeMenu() {
               style={{ paddingLeft: 20 }}
               onPress={authCtx.logout}
             >
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Logout</Text>
+              <Text style={{ fontSize: 16, fontWeight: "bold" }}>Logout</Text>
             </TouchableOpacity>
           ),
           drawerPosition: "right",
@@ -150,6 +144,7 @@ function HomeMenu() {
   );
 }
 
+
 function HomeStack() {
   return (
     <Stack.Navigator
@@ -161,7 +156,6 @@ function HomeStack() {
         component={HomeMenu}
         options={{ headerShown: false }}
       />
-
       <Stack.Screen
         name="Home"
         component={screens.HomeScreen}
@@ -180,6 +174,21 @@ function HomeStack() {
       <Stack.Screen
         name="Message"
         component={screens.MessageScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={screens.ProductDetailScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={screens.SearchScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="AllComment"
+        component={screens.AllCommentScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -205,14 +214,13 @@ function Root() {
   useEffect(() => {
     async function fetchToken() {
       try {
-
         const storedToken = await AsyncStorage.getItem("accessToken");
         if (storedToken) {
           authCtx.authenticate(storedToken);
         }
         // setIsTryingLogin(false);
       } catch (error) {
-        console.error('fetch token error: ', error);
+        console.error("fetch token error: ", error);
       }
     }
     fetchToken();

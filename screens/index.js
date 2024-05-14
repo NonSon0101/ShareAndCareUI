@@ -14,6 +14,9 @@ import MessageScreen from "./MessageScreen";
 import ForgotPasswordScreen from "./FogotPasswordScreen";
 import SignUpScreen from "./SignUpScreen";
 import OTPScreen from "./OtpConfirmScreen";
+import ProductDetailScreen from "./ProductDetailScreen";
+import SearchScreen from "./SearchScreen";
+import AllCommentScreen from "./AllCommentScreen";
 
 export {
     LoginScreen,
@@ -31,6 +34,8 @@ export {
     MessageScreen,
     ForgotPasswordScreen,
     SignUpScreen,
-    OTPScreen
-
+    ProductDetailScreen,
+    OTPScreen,
+    SearchScreen,
+    AllCommentScreen,
 }

@@ -14,12 +14,11 @@ export async function auth({ mode, email, password }) {
 
 export async function verifyAccount({ email, otpCode }) {
     try {
-        console.info('log at at verifyAccoount', email, otpCode);
-
+        console.info('log at at verifyAccount', email, otpCode);
         const respone = await api.post(`${AUTH_URL}/verify-email`, { email: email, otp: otpCode });
         return respone.data.metadata;
     } catch (error) {
-        console.error('Error at verifyAccoount', error);
+        console.error('Error at verifyAccount', error);
     }
 }
 

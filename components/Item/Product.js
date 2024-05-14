@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, Text, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Text, Image, SafeAreaView, ImageBackground } from 'react-native';
 
 import PriceFree from './PriceFree';
 import ProductName from './ProductName';
@@ -9,11 +9,12 @@ export default function Product(props) {
     return (
         <SafeAreaView style={styles.container}>
             <Pressable style={styles.container__details} >
-                <Image style={styles.image} source={props.Image} />
+                <Image style={styles.image} source={{ uri: `${props.product.product_thumb}` }} />
                 <SafeAreaView style={styles.info}>
-                    <PriceFree />
-                    <ProductName ProductName={props.ProductName} />
-                    <Owner Owner={props.Owner} />
+                    {props.product?.product_price ? <Text style={{ fontSize: 17, fontWeight: 'bold' }}>{props.product?.product_price}VND</Text> : <PriceFree />}
+
+                    <ProductName ProductName={props.product?.product_name} />
+                    <Owner Owner={props.product?.product_description} />
                     <Status />
                 </SafeAreaView>
             </Pressable>

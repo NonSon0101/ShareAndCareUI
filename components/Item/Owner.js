@@ -3,7 +3,6 @@ import { StyleSheet, View, Image, Text } from 'react-native';
 export default function Owner(props) {
     return (
         <View style={styles.container}>
-            <Image source={require('../../assets/images/avatar4.png')} />
             <Text style={styles.text}>{props.Owner}</Text>
         </View>
     );

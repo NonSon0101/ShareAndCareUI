@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { SafeAreaView, StyleSheet, View, Image } from "react-native";
+import { SafeAreaView, StyleSheet, View, Image, Alert } from "react-native";
 import AuthContent from "../components/Auth/AuthContent";
 import { AuthContext } from "../store/auth-context";
 import { useNavigation } from '@react-navigation/native';
@@ -10,7 +10,7 @@ export default function SignUpScreen() {
   const handleSignUp = async ({ mode, email, password }) => {
     try {
       const response = await auth({ mode, email, password });
-      if (response.user) {
+      if (response?.user) {
         authCtx.authenticate({ email: response.user });
         navigation.navigate("OTPScreen");
       }
